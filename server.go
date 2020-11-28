@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 	"os"
-	"time"
-	"twitter_clone/middlewares"
 	"twitter_clone/defaultTemplate"
+	"twitter_clone/middlewares"
+	"twitter_clone/controllers"
 
 	"github.com/joho/godotenv"
 	"github.com/kamva/mgm/v3"
@@ -14,28 +14,22 @@ import (
 )
 
 func main() {
-	errHandle(godotenv.Load())
-	mgm.SetDefaultConfig(nil, "", options.Client().ApplyURI(os.Getenv("DB_CONNECTION")))
+	godotenv.Load()
+	mgm.SetDefaultConfig(nil, os.Getenv("DB_NAME"), options.Client().ApplyURI(os.Getenv("DB_CONNECTION")))
 	app := echo.New()
+	api := app.Group("/api")
+	tweedRoutes := tweedcontroller.TweedController{}
 
+	fmt.Println(os.Getenv("DB_CONNECTION"))
 	app.Static("/public", "public")
-	mymiddlewares.AttachMiddleWares(app)
 	app.Renderer = getdefaulttemplate.GetRenderer("templates/*.html")
-
-	app.GET("/:name", func(c echo.Context) error {
-		fmt.Println(c.Param("name"))
-		return c.Render(200, "index.html", echo.Map{
-			"Name": c.Param("name"),
-			"Time": time.Now().Format("3:4 PM"),
-		})
+	middlewares.AttachMiddleWares(app)
+	tweedRoutes.Init(api)
+	
+	app.GET("/", func(c echo.Context) error {
+		return c.Render(200, "index.html", echo.Map{})
 	})
 
 	fmt.Println("Server running")
 	app.Logger.Fatal(app.Start(":8080"))
-}
-
-func errHandle(err error) {
-	if err != nil {
-		fmt.Println(err)
-	}
 }

@@ -5,14 +5,31 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel = "stylesheet" href = "../public/css/styles.css">
         <link rel = "shortcut icon" href = "../public/img/bigT.png" type="image/x-icon">
-        <title> {{ .Name }} </title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <title> Twidder</title>
     </head>
 
     <body>
-        <div class = "parent">
-            <div class = "c1">
-                <h1> Welcome {{ .Name }}, the time now is {{ .Time }} </h1> 
+        <header class = "title">
+            <h1> Twidder - Basic Twitter Clone 🔥</h1> 
+        </header>
+
+        <form class="tweed-form">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" width="50" name="name" id="name" placeholder="Enter name">
             </div>
+            <div class="form-group">
+              <label for="content">Content</label>
+              <textarea name="content" class="form-control" id="content" rows="5" placeholder="Enter content"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Tweed! 🔥</button>
+        </form>
+
+        <div class="loading">
+            <img src="../public/img/loading5.gif" alt="loading">
         </div>
+    
+        <script src = "../public/js/index.js"></script>
     </body>
 </html>
