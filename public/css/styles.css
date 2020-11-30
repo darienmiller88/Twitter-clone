@@ -23,3 +23,16 @@ h1{
 .loading{
     text-align: center;
 }
+
+.tweeds > div{
+    border: 3px solid black;
+    padding: 15px;
+    background: gray;
+    margin-top: 10px;
+}
+
+.tweeds{
+    width: 70%;
+    color: black;
+    margin: 0 auto;
+}

@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 	"os"
+	"twitter_clone/controllers"
 	"twitter_clone/defaultTemplate"
 	"twitter_clone/middlewares"
-	"twitter_clone/controllers"
 
 	"github.com/joho/godotenv"
 	"github.com/kamva/mgm/v3"
@@ -15,12 +15,11 @@ import (
 
 func main() {
 	godotenv.Load()
-	mgm.SetDefaultConfig(nil, os.Getenv("DB_NAME"), options.Client().ApplyURI(os.Getenv("DB_CONNECTION")))
 	app := echo.New()
 	api := app.Group("/api")
 	tweedRoutes := tweedcontroller.TweedController{}
+	mgm.SetDefaultConfig(nil, os.Getenv("DB_NAME"), options.Client().ApplyURI(os.Getenv("DB_CONNECTION")))
 
-	fmt.Println(os.Getenv("DB_CONNECTION"))
 	app.Static("/public", "public")
 	app.Renderer = getdefaulttemplate.GetRenderer("templates/*.html")
 	middlewares.AttachMiddleWares(app)
