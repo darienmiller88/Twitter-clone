@@ -27,10 +27,13 @@ form.addEventListener("submit", async (event) => {
     })
 
     const result = await response.json()
+
+    //The back end rate limits to one request per second, so hide the form for exactly one second on the front end
+    setTimeout(() => {
+        form.style.display = ''
+    }, 1000)
     form.reset()
-    form.style.display = ''
     getAllTweeds()
-    console.log(result)
 })
 
 async function getAllTweeds(){
@@ -43,15 +46,22 @@ async function getAllTweeds(){
         const div = document.createElement('div')
         const header = document.createElement('h3')
         const content = document.createElement('p')
-        const date = document.createElement('p')
-
+        const date = document.createElement('small')
+        //const thumbsUp = document.createElement('i')
+        
         header.textContent = tweed.name
         content.textContent = tweed.content
         date.textContent = new Date(tweed.created_at)
+        // thumbsUp.className = "fa fa-thumbs-up"
+        // thumbsUp.style = "font-size:36px"
+        // thumbsUp.onclick = () => {
+        //     console.log("icon clicked")
+        // }
 
         div.append(header)
         div.append(content)
         div.append(date)
+      //  div.append(thumbsUp)
 
         tweedsElement.appendChild(div)
     });

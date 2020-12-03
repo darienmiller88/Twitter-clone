@@ -27,8 +27,22 @@ h1{
 .tweeds > div{
     border: 3px solid black;
     padding: 15px;
-    background: gray;
-    margin-top: 10px;
+    background:rgba(255, 255, 255, 0.671);
+    margin-top: 25px;
+}
+
+.fa {
+    /* width: 50%; */
+    cursor: pointer;
+    user-select: none;
+    margin-left: 400px;
+    font-size: 48px;
+}
+  
+.fa:hover {
+    color: #0099CC;
+    transition: all .2s ease-in-out;
+    transform: scale(1.1);
 }
 
 .tweeds{
