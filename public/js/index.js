@@ -1,7 +1,7 @@
 const form = document.querySelector('form')
 const loadingElement = document.querySelector('.loading')
 const tweedsElement = document.querySelector('.tweeds')
-const API_URL = "http://localhost:8080/api/tweeds"
+const API_URL = window.location.hostname === "localhost" ? "http://localhost:8080/api/tweeds" : "https://tweeder.herokuapp.com/api/tweeds"
 
 loadingElement.style.display = ''
 getAllTweeds()
