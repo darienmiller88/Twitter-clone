@@ -41,5 +41,5 @@ func main() {
 		return c.Render(200, "index.html", echo.Map{})
 	})
 
-	app.Logger.Fatal(app.Start(":8080"))
+	app.Logger.Fatal(app.Start(os.Getenv("PORT")))
 }
