@@ -2,7 +2,7 @@ package main
 
 import (
 	"os"
-	//"twitter_clone/controllers"
+	"twitter_clone/controllers"
 	"twitter_clone/defaultTemplate"
 	"twitter_clone/middlewares"
 
@@ -21,10 +21,10 @@ func main() {
 
 	//Declare both the default router and a route group for each route to be mounted on ("/api")
 	app := echo.New()
-	//api := app.Group("/api")
+	api := app.Group("/api")
 
 	//Initialize the "tweed" controller, which will handle the posting and retrieving of tweeds
-	//tweedRoutes := tweedcontroller.TweedController{}
+	tweedRoutes := tweedcontroller.TweedController{}
 	app.Static("/public", "public")
 
 	//Echo does not use the default golang template which is my preference, so this line of code will assign the 
@@ -35,11 +35,11 @@ func main() {
 	middlewares.AttachMiddleWares(app)
 
 	//Mount each route of the "tweedcontroller" onto the /api route.
-	//tweedRoutes.Init(api)
+	tweedRoutes.Init(api)
 
 	app.GET("/", func(c echo.Context) error {
 		return c.Render(200, "index.html", echo.Map{})
 	})
 
-	app.Logger.Fatal(app.Start(os.Getenv("PORT")))
+	app.Logger.Fatal(app.Start(":" + os.Getenv("PORT")))
 }
