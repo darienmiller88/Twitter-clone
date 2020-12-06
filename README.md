@@ -1,5 +1,5 @@
 # Twidder!
-A simple twitter clone where user can create post to a dashboard.
+A simple twitter clone where user can create posts to a dashboard.
 
 ## Description
 
