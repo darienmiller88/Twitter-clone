@@ -1,1 +1,1 @@
-web: bin/twitter_clone
+web: bin/main
