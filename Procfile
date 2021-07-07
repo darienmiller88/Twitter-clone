@@ -1,1 +1,1 @@
-web: bin/deploy_app
+web: bin/twidder
