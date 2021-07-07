@@ -1,1 +1,1 @@
-web: bin/twidder
+web: bin/twitter_clone
