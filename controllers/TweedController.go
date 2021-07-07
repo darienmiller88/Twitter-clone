@@ -63,7 +63,7 @@ func (t *TweedController) getTweedsByName(routeGroup *echo.Group){
 
 		//Unmarshal the retrieved documents in the array!
 		documents.All(mgm.Ctx(), &docsArray)
-		return c.JSONPretty(http.StatusOK, docsArray, " ")
+		return c.JSONPretty(http.StatusOK, docsArray, "\t")
 	})
 }
 
